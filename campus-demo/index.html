@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#304d3e">
+  <meta name="description" content="A small, connected AI International School campus demo. Explore the campus, enter a classroom, practice English, and talk to a friend.">
+  <title>A little day at school · AI International School</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to activity</a>
+  <header class="schoolbar">
+    <a class="brand" href="#campus" aria-label="AI International School campus"><span class="crest">ai<span>✦</span></span><span>AI INTERNATIONAL<br><b>SCHOOL</b></span></a>
+    <div class="term"><span class="status-dot"></span> FALL TERM <span class="divider">/</span> WEEK 03</div>
+    <div class="student"><span class="date">Wednesday, September 9</span><span class="student-mark">DZ</span></div>
+  </header>
+  <main id="main" tabindex="-1"></main>
+  <footer class="demo-strip"><span>INTERACTIVE CONCEPT <span class="sep">·</span> Local demo · scripted conversations</span><button id="scene-index" aria-label="Open all demo scenes">Scenes <span>↗</span></button></footer>
+  <dialog id="scenes-dialog" aria-labelledby="scenes-title"><div class="dialog-head"><h2 id="scenes-title">Explore the demo</h2><button data-close aria-label="Close scene list">×</button></div><p>Two small journeys through the same school day.</p><nav class="scene-links" aria-label="Demo scenes"><a href="#campus">01 <b>Campus panorama</b></a><a href="#classroom">02 <b>Inside the classroom</b></a><a href="#course">03 <b>Today’s lesson</b></a><a href="#exercise">04 <b>Practice a response</b></a><a href="#feedback">05 <b>Lesson feedback</b></a><a href="#friend">06 <b>Meet Maya</b></a><a href="#conversation">07 <b>Continue the conversation</b></a><a href="#reflection">08 <b>Conversation reflection</b></a></nav><button class="text-button" id="reset">Reset this demo’s progress</button></dialog>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="AI International School concept 01: playful campus operations dashboard">
+  <title>My School — Campus Operations</title>
+  <style>
+    :root{--ink:#153f45;--muted:#60777a;--paper:#fffdf5;--mint:#9cdbc5;--teal:#1c8078;--sun:#ffd85a;--coral:#f27867;--sky:#cfeff1;--line:#173f45;--shadow:0 8px 0 rgba(21,63,69,.13)}
+    *{box-sizing:border-box}html{font-size:16px}body{margin:0;background:#f1eee3;color:var(--ink);font-family:"Trebuchet MS","Avenir Next",Arial,sans-serif;min-height:100vh}
+    button{font:inherit;color:inherit}button:focus-visible,a:focus-visible{outline:3px solid #111;outline-offset:3px}
+    .shell{max-width:1500px;margin:auto;min-height:100vh;background:var(--paper);display:grid;grid-template-columns:230px 1fr}
+    aside{background:var(--mint);border-right:2px solid var(--line);padding:26px 18px;display:flex;flex-direction:column;gap:26px}
+    .brand{display:flex;gap:11px;align-items:center}.seal{width:46px;height:46px;border:2px solid var(--line);border-radius:50%;display:grid;place-items:center;background:var(--sun);font:900 20px Georgia}.brand strong{display:block;font-size:15px;line-height:1.05}.brand small{font-size:12px;letter-spacing:.06em}
+    nav{display:grid;gap:8px}.nav{border:0;background:transparent;text-align:left;padding:12px 13px;border-radius:12px;cursor:pointer;font-weight:800}.nav:hover,.nav.active{background:#fff;border:2px solid var(--line);padding:10px 11px;box-shadow:3px 3px 0 var(--line)}
+    .semester-mini{margin-top:auto;background:#fff;padding:14px;border:2px solid var(--line);border-radius:16px}.semester-mini small{font-weight:800}.bar{height:9px;background:#dbe7e2;border:1px solid var(--line);border-radius:99px;overflow:hidden;margin:10px 0}.bar i{display:block;height:100%;background:var(--coral);width:42%}.semester-mini b{font-size:13px}
+    main{min-width:0}.topbar{height:76px;border-bottom:2px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:#fff}.crumb{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.profile{display:flex;gap:14px;align-items:center}.streak{padding:8px 12px;background:var(--sun);border:2px solid var(--line);border-radius:99px;font-size:13px;font-weight:900}.avatar{width:40px;height:40px;background:var(--coral);border:2px solid var(--line);border-radius:50%;display:grid;place-items:center;color:white;font-weight:900}
+    .content{padding:30px 32px 42px;display:grid;gap:24px}.hero{display:grid;grid-template-columns:1.35fr .65fr;gap:22px}.welcome{background:var(--sky);border:2px solid var(--line);border-radius:22px;padding:26px 28px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+    .welcome:after{content:"";position:absolute;width:170px;height:170px;border:34px solid rgba(255,255,255,.55);border-radius:50%;right:-55px;top:-65px}.eyebrow{margin:0 0 7px;font-size:13px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.welcome h1{font:900 clamp(2.1rem,4vw,4rem)/.95 Georgia,serif;margin:0;max-width:650px}.welcome p{max-width:580px;font-size:17px;line-height:1.55;margin:18px 0 0}.goal{background:var(--coral);color:white;border:2px solid var(--line);border-radius:22px;padding:23px;box-shadow:var(--shadow);display:flex;flex-direction:column;justify-content:space-between}.goal .label{font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.1em}.goal strong{font:900 30px/1.05 Georgia;margin:16px 0}.goal .meter{height:13px;border:2px solid var(--line);background:rgba(255,255,255,.35);border-radius:99px;overflow:hidden}.goal .meter span{display:block;width:64%;height:100%;background:var(--sun)}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:18px}.section-head h2{margin:0;font:900 27px Georgia}.section-head p{margin:4px 0 0;color:var(--muted)}.time{font-size:14px;font-weight:900;border-bottom:4px solid var(--sun)}
+    .campus-route{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;position:relative}.campus-route:before{content:"";position:absolute;left:7%;right:7%;top:34px;height:5px;background:#d6d6c8;border:1px solid var(--line);z-index:0}.lesson{position:relative;z-index:1;background:#fff;border:2px solid var(--line);border-radius:18px;padding:16px;min-height:198px;display:flex;flex-direction:column;transition:.2s}.lesson:hover{transform:translateY(-5px);box-shadow:5px 7px 0 var(--line)}.lesson.done{background:#e1f5ec}.lesson.current{background:var(--sun);box-shadow:5px 7px 0 var(--line)}.lesson .pin{width:38px;height:38px;border:2px solid var(--line);background:#fff;border-radius:50%;display:grid;place-items:center;font-weight:900;margin-bottom:20px}.lesson .duration{font-size:12px;font-weight:900;text-transform:uppercase}.lesson h3{font-size:17px;margin:8px 0 5px}.lesson p{font-size:13px;line-height:1.4;color:#476267;margin:0}.lesson button{margin-top:auto;border:2px solid var(--line);background:#fff;border-radius:9px;padding:8px;cursor:pointer;font-size:13px;font-weight:900}.lesson button:hover{background:var(--ink);color:white}
+    .lower{display:grid;grid-template-columns:1.25fr .75fr;gap:22px}.panel{border:2px solid var(--line);border-radius:20px;background:#fff;padding:22px}.panel h2{font:900 23px Georgia;margin:0 0 18px}.vocab-row{display:grid;grid-template-columns:1fr 100px 100px 92px;align-items:center;gap:12px;border-top:1px solid #c7d3d0;padding:13px 0}.vocab-row:first-of-type{border-top:0}.term b{display:block}.term small{color:var(--muted)}.score{font-size:12px}.score span{display:block;height:8px;background:#e5ecea;border-radius:9px;overflow:hidden;margin-top:4px}.score i{display:block;height:100%;background:var(--teal)}.weak i{background:var(--coral)}.meaning{border:0;background:#e8f0ed;border-radius:9px;padding:8px;cursor:pointer;font-weight:800;font-size:12px}
+    .brief{background:var(--ink);color:white}.brief h2{color:var(--sun)}.brief blockquote{margin:0;font:700 21px/1.4 Georgia}.brief dl{display:grid;grid-template-columns:auto 1fr;gap:10px;margin:22px 0}.brief dt{color:#9cdbc5;font-size:13px}.brief dd{margin:0;font-weight:800;font-size:13px}.primary{width:100%;border:2px solid #fff;background:var(--coral);color:#fff;padding:13px;border-radius:12px;font-weight:900;cursor:pointer;box-shadow:4px 4px 0 var(--sun)}.primary:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--sun)}
+    .toast{position:fixed;right:25px;bottom:25px;background:var(--ink);color:white;padding:14px 18px;border:2px solid white;border-radius:12px;box-shadow:5px 5px 0 var(--coral);transform:translateY(130px);transition:.25s;z-index:4}.toast.show{transform:none}
+    @media(max-width:980px){.shell{grid-template-columns:78px 1fr}aside{padding:20px 10px}.brand div,.nav span,.semester-mini{display:none}.brand{justify-content:center}.nav{text-align:center;padding:11px 4px}.nav.active{padding:9px 2px}.hero,.lower{grid-template-columns:1fr}.campus-route{grid-template-columns:repeat(2,1fr)}.campus-route:before{display:none}}
+    @media(max-width:620px){.shell{display:block}aside{position:sticky;top:0;z-index:5;flex-direction:row;align-items:center;border-right:0;border-bottom:2px solid var(--line);padding:8px 12px;overflow:auto}.brand{display:none}nav{display:flex}.nav{white-space:nowrap}.topbar{height:60px;padding:0 16px}.content{padding:18px 14px}.streak{display:none}.campus-route{grid-template-columns:1fr}.lesson{min-height:165px}.vocab-row{grid-template-columns:1fr 70px 70px}.meaning{grid-column:1/-1}.welcome{padding:22px}.welcome h1{font-size:2.4rem}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside>
+      <div class="brand"><div class="seal">A</div><div><strong>AI International<br>School</strong><small>EST. 2026</small></div></div>
+      <nav aria-label="School navigation">
+        <button class="nav active"><span>My School</span></button><button class="nav"><span>Today</span></button><button class="nav"><span>Courses</span></button><button class="nav"><span>Story Bank</span></button><button class="nav"><span>Vocabulary</span></button><button class="nav"><span>Mistakes</span></button>
+      </nav>
+      <div class="semester-mini"><small>Fall Recruiting Term</small><div class="bar"><i></i></div><b>Week 3 of 8</b></div>
+    </aside>
+    <main>
+      <header class="topbar"><div class="crumb">Wednesday · September 9</div><div class="profile"><span class="streak">12 day streak</span><span class="avatar">DZ</span></div></header>
+      <div class="content">
+        <section class="hero">
+          <div class="welcome"><p class="eyebrow">Good morning, Deng</p><h1>Your campus is ready.</h1><p>Today turns yesterday’s weak STAR result into a sharper, measurable interview story.</p></div>
+          <div class="goal"><span class="label">Semester goal</span><strong>Pass English PM interviews</strong><div><div class="meter"><span></span></div><small>64% interview readiness</small></div></div>
+        </section>
+        <section>
+          <div class="section-head"><div><h2>Today’s campus route</h2><p>A focused 60-minute school day, planned from your learning memory.</p></div><span class="time">52 min remaining</span></div>
+          <div class="campus-route" style="margin-top:18px">
+            <article class="lesson done"><span class="pin">01</span><span class="duration">10 min · complete</span><h3>Vocabulary Lab</h3><p>Recall four expressions from yesterday.</p><button data-action="Reviewed vocabulary">Review notes</button></article>
+            <article class="lesson current"><span class="pin">02</span><span class="duration">10 min · now</span><h3>Interview English</h3><p>Push back without sounding defensive.</p><button data-action="Opened Interview English class">Enter class</button></article>
+            <article class="lesson"><span class="pin">03</span><span class="duration">25 min</span><h3>Interview Room</h3><p>Stakeholder challenge with Sarah.</p><button data-action="Prepared mock interview">View brief</button></article>
+            <article class="lesson"><span class="pin">04</span><span class="duration">10 min</span><h3>Feedback Studio</h3><p>Strengthen action and result evidence.</p><button data-action="Opened feedback studio">Preview</button></article>
+            <article class="lesson"><span class="pin">05</span><span class="duration">5 min</span><h3>Homeroom</h3><p>Save progress and tomorrow’s review.</p><button data-action="Opened homeroom">See plan</button></article>
+          </div>
+        </section>
+        <section class="lower">
+          <div class="panel">
+            <h2>Words to activate today</h2>
+            <div class="vocab-row"><div class="term"><b>push back</b><small data-zh="提出异议；反驳">politely resist a request</small></div><div class="score">Recall 82<span><i style="width:82%"></i></span></div><div class="score weak">Speaking 31<span><i style="width:31%"></i></span></div><button class="meaning">Show Chinese</button></div>
+            <div class="vocab-row"><div class="term"><b>reach alignment</b><small data-zh="达成一致">arrive at shared agreement</small></div><div class="score">Recall 68<span><i style="width:68%"></i></span></div><div class="score weak">Speaking 24<span><i style="width:24%"></i></span></div><button class="meaning">Show Chinese</button></div>
+            <div class="vocab-row"><div class="term"><b>trade-off</b><small data-zh="权衡；取舍">a balance between competing gains</small></div><div class="score">Recall 91<span><i style="width:91%"></i></span></div><div class="score weak">Speaking 46<span><i style="width:46%"></i></span></div><button class="meaning">Show Chinese</button></div>
+          </div>
+          <div class="panel brief">
+            <h2>Next: Interview Room</h2><blockquote>“Tell me about a time you had to challenge a stakeholder’s request.”</blockquote>
+            <dl><dt>Interviewer</dt><dd>Sarah · Hiring Manager</dd><dt>Today’s focus</dt><dd>Measurable STAR result</dd><dt>Target language</dt><dd>push back · trade-off</dd></dl>
+            <button class="primary" data-action="Interview room is ready">Prepare interview</button>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script>
+    const toast=document.querySelector('.toast');let timer;
+    document.querySelectorAll('[data-action]').forEach(b=>b.addEventListener('click',()=>{toast.textContent=b.dataset.action;toast.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>toast.classList.remove('show'),1800)}));
+    document.querySelectorAll('.meaning').forEach(b=>b.addEventListener('click',()=>{const s=b.parentElement.querySelector('small');if(!s.dataset.en)s.dataset.en=s.textContent;const showing=b.textContent.includes('English');s.textContent=showing?s.dataset.en:s.dataset.zh;b.textContent=showing?'Show Chinese':'Show English'}));
+  </script>
+</body>
+</html>
